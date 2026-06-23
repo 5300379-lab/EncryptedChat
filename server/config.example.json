@@ -1,0 +1,8 @@
+{
+  "host": "0.0.0.0",
+  "port": 8443,
+  "adminPassword": "CHANGE_ME",
+  "encryptionKey": "CHANGE_ME",
+  "certFile": "server.crt",
+  "keyFile": "server.key"
+}

@@ -1,0 +1,101 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EncryptedChat.ChatWindow"
+        Title="Encrypted Chat" Width="900" Height="700"
+        WindowStartupLocation="CenterScreen"
+        Background="#1a1a2e">
+
+    <Grid ColumnDefinitions="*,200">
+
+        <!-- Main chat area -->
+        <Grid Grid.Column="0" RowDefinitions="Auto,*,Auto,Auto">
+
+            <!-- Header -->
+            <Border Grid.Row="0" Background="#16213e" Padding="10"
+                    BorderBrush="#0f3460" BorderThickness="0,0,0,1">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="ServerNameText" Text="# general-chat"
+                                   FontSize="16" FontWeight="Bold"
+                                   Foreground="#eaeaea" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TypingIndicatorText" Text=""
+                                   FontSize="12" Foreground="#888888"
+                                   Margin="20,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <Button x:Name="AdminButton" Content="⚙️ Admin" Click="Admin_Click"
+                            Background="Transparent" Foreground="#e94560"
+                            BorderThickness="0" HorizontalAlignment="Right"
+                            IsVisible="False"/>
+                </Grid>
+            </Border>
+
+            <!-- Messages -->
+            <ScrollViewer Grid.Row="1" x:Name="MessageScrollViewer"
+                          Background="#1a1a2e"
+                          VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl x:Name="MessagesPanel" Margin="10"/>
+            </ScrollViewer>
+
+            <!-- Reply preview -->
+            <Border Grid.Row="2" x:Name="ReplyPreviewPanel"
+                    Background="#16213e" Padding="10" IsVisible="False"
+                    BorderBrush="#0f3460" BorderThickness="0,1,0,0">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="↩ Replying to " Foreground="#888888"/>
+                        <TextBlock x:Name="ReplyUsernameText" FontWeight="Bold" Foreground="#eaeaea"/>
+                    </StackPanel>
+                    <Button Content="✕" Click="CancelReply_Click"
+                            Background="Transparent" Foreground="#888888"
+                            BorderThickness="0" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+
+            <!-- Input -->
+            <Border Grid.Row="3" Background="#16213e" Padding="10">
+                <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+                    <Button Grid.Column="0" Content="📎" Click="AttachImage_Click"
+                            Background="Transparent" Foreground="#888888"
+                            BorderThickness="0" FontSize="18" Margin="0,0,8,0"/>
+                    <TextBox Grid.Column="1" x:Name="MessageInput"
+                             Background="#16213e" Foreground="#eaeaea"
+                             BorderThickness="0" FontSize="14"
+                             VerticalAlignment="Center"
+                             AcceptsReturn="True" TextWrapping="Wrap" MaxHeight="100"
+                             Watermark="Message…"
+                             KeyDown="MessageInput_KeyDown"
+                             TextChanged="MessageInput_TextChanged"/>
+                    <Button Grid.Column="2" Content="😊" Click="InsertEmoji_Click"
+                            Background="Transparent" Foreground="#888888"
+                            BorderThickness="0" FontSize="18" Margin="8,0,0,0"/>
+                    <Button Grid.Column="3" Content="Send" Click="SendMessage_Click"
+                            Background="#e94560" Foreground="White"
+                            BorderThickness="0" Padding="15,6" Margin="8,0,0,0"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Sidebar -->
+        <Border Grid.Column="1" Background="#16213e" BorderBrush="#0f3460" BorderThickness="1,0,0,0">
+            <Grid RowDefinitions="Auto,*">
+                <Border Grid.Row="0" Background="#16213e" Padding="10"
+                        BorderBrush="#0f3460" BorderThickness="0,0,0,1">
+                    <TextBlock x:Name="OnlineCountText" Text="ONLINE — 0"
+                               FontSize="12" FontWeight="Bold" Foreground="#888888"/>
+                </Border>
+                <ListBox Grid.Row="1" x:Name="UserListBox"
+                         Background="Transparent" BorderThickness="0" Padding="6">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,3">
+                                <Ellipse Width="8" Height="8" Fill="#00ff88" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding}" FontSize="14" Foreground="#eaeaea"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+# Build output
+**/bin/
+**/obj/
+.vs/
+*.user
+
+# Server runtime — host-specific secrets and generated files (never commit)
+config.json
+*.crt
+*.key
+*.pem
+server.log
+
+# Client local settings (last-used connection)
+settings.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db

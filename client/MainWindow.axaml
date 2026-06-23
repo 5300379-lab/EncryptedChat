@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="EncryptedChat.MainWindow"
+        Title="Encrypted Chat" Width="900" Height="640"
+        WindowStartupLocation="CenterScreen"
+        Background="#1a1a2e">
+
+    <Grid Margin="60" RowDefinitions="Auto,Auto,*">
+        <TextBlock Grid.Row="0" Text="🔒 Encrypted Chat"
+                   FontSize="32" FontWeight="Bold" Foreground="#e94560"
+                   HorizontalAlignment="Center" Margin="0,40,0,15"/>
+        <TextBlock Grid.Row="1" Text="Choose how to connect"
+                   FontSize="14" Foreground="#888888"
+                   HorizontalAlignment="Center" Margin="0,0,0,60"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal"
+                    HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="40">
+
+            <Border Background="#16213e" BorderBrush="#0f3460" BorderThickness="2" CornerRadius="6" Width="260">
+                <StackPanel>
+                    <Button Content="🏠 LAN Mode" Click="SelectLanMode_Click"
+                            Background="#16213e" Foreground="#eaeaea"
+                            FontSize="16" FontWeight="Bold" BorderThickness="0"
+                            Padding="40,35" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                    <TextBlock Text="Local network&#x0a;UDP discovery • no internet required"
+                               FontSize="11" Foreground="#888888"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               Margin="10,0,10,16"/>
+                </StackPanel>
+            </Border>
+
+            <Border Background="#e94560" BorderBrush="#e94560" BorderThickness="2" CornerRadius="6" Width="260">
+                <StackPanel>
+                    <Button Content="🌐 Connect to Server" Click="SelectServerMode_Click"
+                            Background="#e94560" Foreground="White"
+                            FontSize="16" FontWeight="Bold" BorderThickness="0"
+                            Padding="40,35" HorizontalAlignment="Stretch"
+                            HorizontalContentAlignment="Center"/>
+                    <TextBlock Text="Enter any server address&#x0a;Secure WebSocket (WSS)"
+                               FontSize="11" Foreground="White"
+                               TextAlignment="Center" TextWrapping="Wrap"
+                               Margin="10,0,10,16"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>
