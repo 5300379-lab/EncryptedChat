@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # <-- Forces all steps to run on Node 24 and eliminates warnings
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  ACTIONS_RUNNER_PRINT_DEPRECATION_WARNINGS: false # <-- Silences the persistent runner deprecation annotations completely
 
 jobs:
   build:
