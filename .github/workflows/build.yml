@@ -18,9 +18,6 @@ jobs:
       with:
         dotnet-version: '8.0.x' 
 
-    - name: Install Native AOT Workload
-      run: dotnet workload install buildtools
-
     - name: Compile to Single EXE
       working-directory: client
       run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishReadyToRun=true
