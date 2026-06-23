@@ -2,12 +2,12 @@ name: Build .NET EXE
 
 on:
   push:
-    branches: [ "main" ] # Runs every time you upload or update files
-  workflow_dispatch: # Allows you to manually trigger the build
+    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest # Required to build a Windows .exe easily
+    runs-on: windows-latest
 
     steps:
     - name: Checkout Repository Code
@@ -16,13 +16,17 @@ jobs:
     - name: Setup .NET SDK
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' # Change to '9.0.x' if using .NET 9
+        dotnet-version: '8.0.x' 
+
+    - name: Install Native AOT Workload
+      run: dotnet workload install buildtools
 
     - name: Compile to Single EXE
+      working-directory: client
       run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishReadyToRun=true
 
     - name: Upload EXE to GitHub for Download
       uses: actions/upload-artifact@v4
       with:
-        name: my-dotnet-app
+        name: EncryptedChat-App
         path: '**/bin/Release/net*/win-x64/publish/*.exe'
