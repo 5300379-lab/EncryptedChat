@@ -5,6 +5,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # <-- Forces all steps to run on Node 24 and eliminates warnings
+
 jobs:
   build:
     runs-on: windows-latest
@@ -26,4 +29,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: EncryptedChat-App
-        path: '**/bin/Release/net*/win-x64/publish/*.exe'
+        path: '**/*.exe'
